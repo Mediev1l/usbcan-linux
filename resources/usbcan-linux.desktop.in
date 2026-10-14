@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=usbcan-linux
+GenericName=CAN bus monitor
+Comment=Send, receive, filter and save CAN frames (Waveshare USB-CAN-A, SocketCAN)
+Exec=@CMAKE_INSTALL_FULL_BINDIR@/usbcan-linux
+Icon=usbcan-linux
+Terminal=false
+Categories=Development;Electronics;
