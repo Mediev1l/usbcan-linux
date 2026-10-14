@@ -17,6 +17,16 @@ FILES=(
     "share/applications/usbcan-linux.desktop"
     "share/icons/hicolor/scalable/apps/usbcan-linux.svg"
 )
+for size in 16 24 32 48 64 128 256; do
+    FILES+=("share/icons/hicolor/${size}x${size}/apps/usbcan-linux.png")
+done
+
+refresh_menus() {
+    command -v gtk-update-icon-cache >/dev/null && [ -f "$PREFIX/share/icons/hicolor/index.theme" ] \
+        && gtk-update-icon-cache -q -t "$PREFIX/share/icons/hicolor" || true
+    touch "$PREFIX/share/icons/hicolor" 2>/dev/null || true
+    command -v update-desktop-database >/dev/null && update-desktop-database "$PREFIX/share/applications" || true
+}
 
 do_deps() {
     sudo apt install -y \
@@ -35,7 +45,7 @@ do_install() {
         -DUSBCAN_BUILD_TESTS=OFF
     cmake --build "$BUILD_DIR"
     cmake --install "$BUILD_DIR"
-    command -v update-desktop-database >/dev/null && update-desktop-database "$PREFIX/share/applications" || true
+    refresh_menus
 
     echo
     echo "Installed to $PREFIX. Start it from the application menu or run: $PREFIX/bin/usbcan-linux"
@@ -49,7 +59,7 @@ do_uninstall() {
     for f in "${FILES[@]}"; do
         rm -fv "$PREFIX/$f"
     done
-    command -v update-desktop-database >/dev/null && update-desktop-database "$PREFIX/share/applications" || true
+    refresh_menus
     echo "Saved messages and settings are kept in ~/.local/share/usbcan-linux and ~/.config/usbcan-linux."
 }
 

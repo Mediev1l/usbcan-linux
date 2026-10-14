@@ -190,7 +190,7 @@ src/backend   AppController: everything the QML UI binds to
 qml           the UI (QML module "UsbCan", Dracula colours in Theme.qml)
 src/app       main()
 tests         core / backend (GoogleTest) and qml (Qt Quick Test), shared fakes
-scripts       install.sh
+scripts       install.sh, render-icons.cpp (regenerates resources/icons/*.png)
 ```
 
 All logic lives in `src/core` and `src/backend` and is unit tested to 100 % line and

@@ -1,6 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="4" y="4" width="56" height="56" rx="12" fill="#263238"/>
-  <path d="M10 40 h8 l4 -16 h8 l4 16 h8 l4 -16 h8" fill="none" stroke="#4DB6AC" stroke-width="4"
-        stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M10 48 h44" stroke="#FFB74D" stroke-width="3" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3ddc84"/>
+      <stop offset="1" stop-color="#1b8f4c"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="224" height="224" rx="48" fill="url(#tile)"/>
+  <!-- CAN_L: falls on dominant bits -->
+  <polyline points="48,148 84,148 84,196 124,196 124,148 148,148 148,196 172,196 172,148 208,148"
+            fill="none" stroke="#f1fa8c" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- CAN_H: rises on dominant bits -->
+  <polyline points="48,124 84,124 84,76 124,76 124,124 148,124 148,76 172,76 172,124 208,124"
+            fill="none" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>

@@ -1,9 +1,15 @@
 qt_add_executable(usbcan-linux main.cpp)
 
+# Window icon as PNGs (the SVG needs the optional Qt SVG plugin at runtime).
+set(USBCAN_ICON_SIZES 16 24 32 48 64 128 256)
+set(USBCAN_ICON_PNGS)
+foreach(size IN LISTS USBCAN_ICON_SIZES)
+    list(APPEND USBCAN_ICON_PNGS ${PROJECT_SOURCE_DIR}/resources/icons/usbcan-linux-${size}.png)
+endforeach()
 qt_add_resources(usbcan-linux "icons"
-    PREFIX /icons
+    PREFIX /
     BASE ${PROJECT_SOURCE_DIR}/resources
-    FILES ${PROJECT_SOURCE_DIR}/resources/usbcan-linux.svg
+    FILES ${USBCAN_ICON_PNGS}
 )
 
 target_compile_definitions(usbcan-linux PRIVATE USBCAN_VERSION="${PROJECT_VERSION}")
@@ -23,3 +29,8 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/usbcan-linux.desktop
         DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
 install(FILES ${PROJECT_SOURCE_DIR}/resources/usbcan-linux.svg
         DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
+foreach(size IN LISTS USBCAN_ICON_SIZES)
+    install(FILES ${PROJECT_SOURCE_DIR}/resources/icons/usbcan-linux-${size}.png
+            DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/${size}x${size}/apps
+            RENAME usbcan-linux.png)
+endforeach()

@@ -6,4 +6,5 @@ Comment=Send, receive, filter and save CAN frames (Waveshare USB-CAN-A, SocketCA
 Exec=@CMAKE_INSTALL_FULL_BINDIR@/usbcan-linux
 Icon=usbcan-linux
 Terminal=false
+StartupWMClass=usbcan-linux
 Categories=Development;Electronics;
